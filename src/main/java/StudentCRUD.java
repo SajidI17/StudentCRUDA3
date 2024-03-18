@@ -19,29 +19,37 @@ public class StudentCRUD {
         getAllStudents();
 
         System.out.println("\n");
-        updateStudentEmail(4,"random12233@example.com");
+        updateStudentEmail(5,"random12233@example.com");
         System.out.println("===============================================");
         System.out.println("AFTER UPDATE");
         System.out.println("===============================================");
         getAllStudents();
 
         System.out.println("\n");
-        deleteStudent(4);
+        deleteStudent(5);
         System.out.println("===============================================");
         System.out.println("AFTER DELETE");
         System.out.println("===============================================");
         getAllStudents();
+
+        //addStudent("Sajid", "Islam", "sajid.islam@example.com", Date.valueOf("2023-09-03"));
+        //updateStudentEmail(4,"random12233@example.com");
+        //deleteStudent(4);
+        //getAllStudents();
     }
 
+    //Gets all students from the table and prints it to console
     public static void getAllStudents() {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
+            //Create the statement
             Statement statement = connection.createStatement();
             statement.executeQuery("SELECT * FROM students");
             ResultSet resultSet = statement.getResultSet();
 
+            //Print all results
             while (resultSet.next()) {
                 System.out.println("Student ID: " + resultSet.getInt("student_id"));
                 System.out.println("\tFirst Name: " + resultSet.getString("first_name"));
@@ -56,6 +64,7 @@ public class StudentCRUD {
     }
 
     //Assuming function will be provided the java.sql.date object
+    //Adds a student given firstname, lastname, email and enrollmentDate
     public static void addStudent(String firstName, String lastName, String email, Date enrollmentDate) {
         try {
             Class.forName("org.postgresql.Driver");
@@ -76,12 +85,14 @@ public class StudentCRUD {
         }
     }
 
+    //will update a students email given their id
     public static void updateStudentEmail(int studentId, String newEmail) {
         try{
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             String updateSQL = "UPDATE students SET email = ? WHERE student_id = ?";
 
+            //prepare statement
             PreparedStatement preparedStatement = connection.prepareStatement(updateSQL);
             preparedStatement.setString(1, newEmail);
             preparedStatement.setInt(2, studentId);
@@ -93,12 +104,14 @@ public class StudentCRUD {
             System.out.println(e);
         }
     }
+    //deletes a student from the table given their id
     public static void deleteStudent(int student_id){
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             String deleteSQL = "DELETE FROM students WHERE student_id = ?";
 
+            //prepare statement
             PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
             preparedStatement.setInt(1, student_id);
 
