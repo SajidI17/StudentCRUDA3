@@ -39,5 +39,7 @@ private static final String PASSWORD = "admin";
 9. Build and run the src/main/java/StudentCRUD.java inside IntelliJ
 
 # Video Demo (OneDrive Link Share)
+Video may be blurrly at first, make sure to set the video quality
+
 https://1drv.ms/v/s!Atmy6GAj6fAchtdmY7p0O5VOibeksQ?e=EIbgaF
 
