@@ -1,11 +1,39 @@
 import java.sql.*;
 
 public class StudentCRUD {
-    private static final String URL = "jdbc:postgresql://localhost:5432/AssignmentThree";
+    private static final String URL = "jdbc:postgresql://localhost:5432/AssignmentThree"; //Change AssignmentThree to the name of the database you have
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "admin";
 
-    public void getAllStudents() {
+    public static void main(String[] args) {
+        System.out.println("===============================================");
+        System.out.println("BEFORE INSERT");
+        System.out.println("===============================================");
+        getAllStudents();
+
+        System.out.println("\n");
+        addStudent("Sajid", "Islam", "sajid.islam@example.com", Date.valueOf("2023-09-03"));
+        System.out.println("===============================================");
+        System.out.println("AFTER INSERT");
+        System.out.println("===============================================");
+        getAllStudents();
+
+        System.out.println("\n");
+        updateStudentEmail(4,"random12233@example.com");
+        System.out.println("===============================================");
+        System.out.println("AFTER UPDATE");
+        System.out.println("===============================================");
+        getAllStudents();
+
+        System.out.println("\n");
+        deleteStudent(4);
+        System.out.println("===============================================");
+        System.out.println("AFTER DELETE");
+        System.out.println("===============================================");
+        getAllStudents();
+    }
+
+    public static void getAllStudents() {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -28,7 +56,7 @@ public class StudentCRUD {
     }
 
     //Assuming function will be provided the java.sql.date object
-    public void addStudent(String firstName, String lastName, String email, Date enrollmentDate) {
+    public static void addStudent(String firstName, String lastName, String email, Date enrollmentDate) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -48,7 +76,7 @@ public class StudentCRUD {
         }
     }
 
-    public void updateStudentEmail(int studentId, String newEmail) {
+    public static void updateStudentEmail(int studentId, String newEmail) {
         try{
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -65,7 +93,7 @@ public class StudentCRUD {
             System.out.println(e);
         }
     }
-    public void deleteStudent(int student_id){
+    public static void deleteStudent(int student_id){
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);

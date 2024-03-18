@@ -2,8 +2,9 @@
 
 This is a Maven project that does basic PostgreSQL queries. 
 
-# JDK-17
-Before running, ensure you have JDK-17 installed on your machine
+# Pre-req Software
+- Before running, ensure you have JDK-17 installed on your machine
+- 
 
 # Setup 
 1. Clone the repo locally
@@ -13,7 +14,7 @@ private static final String URL = "jdbc:postgresql://localhost:5432/AssignmentTh
 private static final String USERNAME = "postgres";
 private static final String PASSWORD = "admin";
 ```
-4. Create the tables
+3. Create the tables
 ```
 CREATE TABLE students (
     student_id SERIAL PRIMARY KEY,
@@ -23,9 +24,16 @@ CREATE TABLE students (
     enrollment_date DATE
 );
 ```
-4. Insert data as needed
+4. Insert data into the students table
+```
+INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
+('John', 'Doe', 'john.doe@example.com', '2023-09-01'),
+('Jane', 'Smith', 'jane.smith@example.com', '2023-09-01'),
+('Jim', 'Beam', 'jim.beam@example.com', '2023-09-02');
+```
 5. Using IntelliJ, Go to File > Open
 6. Select the pom.xml, click OK.
 7. In the dialog that opens, click Open as Project.
-8. Run and build the src/main/java/Main.java (This should automatically download all dependencies)
-9. Modify code Main.java as needed
+8. Modify code StudentCRUD.java as needed
+9. Build and run the src/main/java/StudentCRUD.java inside IntelliJ
+
